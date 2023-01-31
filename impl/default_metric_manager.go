@@ -25,7 +25,7 @@ import (
 	"github.com/apache/dubbo-go/common/constant"
 	"github.com/apache/dubbo-go/common/extension"
 	"github.com/apache/dubbo-go/config"
-	"github.com/apache/dubbo-go/metrics"
+	"github.com/cauherk/golang-metrics"
 )
 
 func init() {

@@ -26,7 +26,7 @@ import (
 )
 
 import (
-	"github.com/apache/dubbo-go/metrics"
+	"github.com/cauherk/golang-metrics"
 )
 
 func TestDefaultMetricManager_GetFastCompass(t *testing.T) {

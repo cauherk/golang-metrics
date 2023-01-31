@@ -22,7 +22,7 @@ import (
 )
 
 import (
-	"github.com/apache/dubbo-go/metrics"
+	"github.com/cauherk/golang-metrics"
 )
 
 type NopFastCompass struct {
