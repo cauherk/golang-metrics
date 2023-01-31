@@ -22,14 +22,10 @@ import (
 )
 
 import (
-	"github.com/apache/dubbo-go/common/constant"
-	"github.com/apache/dubbo-go/common/extension"
-	"github.com/apache/dubbo-go/config"
 	"github.com/cauherk/golang-metrics"
 )
 
 func init() {
-	extension.SetMetricManager(constant.DEFAULT_KEY, newDefaultMetricManager())
 }
 
 /*
@@ -72,8 +68,10 @@ func (d *DefaultMetricManager) getMetricRegistry(group string) metrics.MetricReg
 	if load {
 		return result.(metrics.MetricRegistry)
 	}
+
+	//modify by cauherk
 	result, _ = d.metricRegistryMap.LoadOrStore(group,
-		NewMetricRegistry(config.GetMetricConfig().GetMaxMetricCountPerRegistry()))
+		NewMetricRegistry(5000))
 	return result.(metrics.MetricRegistry)
 }
 

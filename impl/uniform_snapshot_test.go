@@ -18,12 +18,12 @@
 package impl
 
 import (
+	metrics "github.com/cauherk/golang-metrics"
 	"math"
 	"testing"
 )
 
 import (
-	gxmath "github.com/dubbogo/gost/math"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -114,5 +114,5 @@ func TestUniformSnapshot_GetValue(t *testing.T) {
 
 // compare two float numbers
 func equals(expected float64, actual float64, delta float64) bool {
-	return gxmath.DeltaCompareFloat64(expected, actual, delta)
+	return metrics.DeltaCompareFloat64(expected, actual, delta)
 }
