@@ -18,12 +18,12 @@
 package impl
 
 import (
+	"github.com/cauherk/golang-metrics/config"
 	"sync"
 	"time"
 )
 
 import (
-	"github.com/apache/dubbo-go/config"
 	"github.com/cauherk/golang-metrics"
 )
 

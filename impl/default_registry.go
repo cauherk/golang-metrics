@@ -24,7 +24,6 @@ import (
 )
 
 import (
-	//"github.com/apache/dubbo-go/config"
 	"github.com/cauherk/golang-metrics"
 )
 
