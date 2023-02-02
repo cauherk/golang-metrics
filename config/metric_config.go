@@ -41,6 +41,14 @@ var (
 		"fastCompass",
 	}
 	defaultEnables = []string{"fastCompass"}
+
+	defaultLevelInterval = map[int]time.Duration{
+		int(metrics.Trivial):  1 * time.Second,
+		int(metrics.Minor):    1 * time.Second,
+		int(metrics.Normal):   1 * time.Second,
+		int(metrics.Major):    60 * time.Second,
+		int(metrics.Critical): 60 * time.Second,
+	}
 )
 
 type MetricConfig struct {
@@ -143,10 +151,18 @@ func (mc *MetricConfig) GetMaxMetricCountPerRegistry() int {
 
 // if the user configures the value for this metric level and the value >= 1s, the configured value will be returned.s
 func (mc *MetricConfig) GetLevelInterval(metricLevel int) time.Duration {
-	if mc.LevelInterval == nil {
+	if mc.LevelInterval == nil && defaultLevelInterval == nil {
 		return mc.GetGlobalInterval()
 	}
-	result, found := mc.LevelInterval[metricLevel]
+
+	var tmpMap map[int]time.Duration
+	if defaultLevelInterval != nil {
+		tmpMap = defaultLevelInterval
+	} else {
+		tmpMap = mc.LevelInterval
+	}
+
+	result, found := tmpMap[metricLevel]
 	if found && result >= time.Second {
 		return result
 	}
